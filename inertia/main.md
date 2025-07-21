@@ -29,14 +29,14 @@ useEffect(() => {
 Add this into withExceptions
 ```php
 ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->respond(function (Symfony\Component\HttpFoundation\Response $response, Throwable $exception, Request $request) {
+        $exceptions->respond(function (Symfony\Component\HttpFoundation\Response $response, Throwable $exception, Illuminate\Http\Request $request) {
             $isServerError = in_array($response->getStatusCode(), [500, 503], true);
             $isInertia = $request->headers->get('X-Inertia') === 'true';
             // When in an Inertia request, we don't want to show the default error modal
             if ($isServerError && $isInertia) {
                 $errorMessage = 'An internal error occurred, please try again. If the problem persists, please contact support.';
                 // In local environment let's show the actual exception class & message
-                if (App::hasDebugModeEnabled()) {
+                if (Illuminate\Support\Facades\App::hasDebugModeEnabled()) {
                     $errorMessage .= sprintf("\n%s: %s", get_class($exception), $exception->getMessage());
                 }
                 return response()->json([
