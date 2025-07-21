@@ -58,21 +58,21 @@ Add this into withExceptions
 Create a new hook `resources/js/hooks/useIenrtiaErrorHandler.ts`
 
 ```js
-import { useToast } from '@/hooks/UseToast';
+
 import { router } from '@inertiajs/react';
+import { AlertTriangleIcon } from 'lucide-react';
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 export function useInertiaErrorHandler() {
-    const { toast } = useToast();
 
     useEffect(() => {
         const removeEventListener = router.on('invalid', (event) => {
             const responseBody = event.detail.response?.data;
             if (responseBody?.error_message) {
-                toast({
-                    variant: 'destructive',
-                    title: 'An error has occurred',
+                toast('An error has occurred', {
                     description: responseBody?.error_message,
+                    icon: <AlertTriangleIcon />
                 });
                 event.preventDefault();
             }
