@@ -99,3 +99,9 @@ $request->validate([
     'password' => ['required', 'confirmed', Rules\Password::defaults()],
 ]);
 ```
+
+# 419 errors after setup
+Are you using SQLite? Probably a db read error, or sqlite3 not installed on php extension. Most likely is permission error on the db though.
+
+# 403 errors after setup
+Are you using filament? Probably dont have the filamentuser implemented on the user model [SEE THIS](https://filamentphp.com/content/danharrin-panel-403-in-production)
