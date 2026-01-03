@@ -7,5 +7,7 @@ Can use this to find timezones per zipcodes and use that for conversions.
 ## Providers (Resend)
 Use [Resend](https://resend.com/) and don't look back
 
+Okay maybe look back at mailgun... sending limits on resend can be very restrictive.
+
 ## Marketing
 Use Resend broadcasts
