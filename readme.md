@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/2b3d3f29-7e19-4b66-a49d-8c83b8d05593)
+<img width="2816" height="1536" alt="Gemini_Generated_Image_ptnfmkptnfmkptnf" src="https://github.com/user-attachments/assets/22959b5f-c49e-492a-a956-49eb3c6d1269" />
 
 A dumping ground for all the random dev tricks/hints/tips I run into and need to record
 
