@@ -2,16 +2,16 @@
 
 Normally setup workers via supervisor.
 
-I've run into issues with supervisor workers dying and FATAL out before they come back during maintenance windows. To fix this, I've gone to adding a 5 second delay to startup on queue workers, and adding retry override of 1000 tries. This gives the job roughly 90 minutes of retries with 5 second delays between each try.
+I've run into issues with supervisor workers dying and FATAL out before they come back during maintenance windows. Add a startretries counter to let it try longer.
 
-FWIW - Supervisor defaults to 3 quick retries, if db is down it will insta FATAL out and never come back until a manual start. THIS FIXES THAT.
+FWIW - Supervisor defaults to 3 quick retries, if db is down it will insta FATAL out and never come back until a manual start.
 
 Example worker for /etc/supervisor/conf.d/laravel.conf:
 
 ```
 [program:laravel-worker]
 process_name=%(program_name)s_%(process_num)02d
-command="sleep 5 && php /var/www/laravel/artisan queue:work --queue=your-queue --sleep=3 --tries=3 --max-time=9600 --timeout=9600"
+command=php /var/www/laravel/artisan queue:work --queue=your-queue --sleep=3 --tries=3 --max-time=9600 --timeout=9600
 autostart=true
 autorestart=true
 startretries=1000
