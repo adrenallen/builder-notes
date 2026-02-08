@@ -15,6 +15,7 @@ Bus::dispatch(new Job())
 
 ## Laravel's retry_after and Long-Running Jobs: Avoiding Duplicate Processing
 
+### NOTE - you should checkout the workers-and-long-jobs.md file and use that for long jobs, i.e. dont use jobs use scheduled tasks and cron!
 Laravel's retry_after setting in config/queue.php (per connection) specifies how long a worker will wait before re-queueing a job that hasn't been completed or explicitly failed.
 
 The Issue:
