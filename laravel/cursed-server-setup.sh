@@ -291,7 +291,8 @@ step_system_update() {
     echo "📦 Updating packages (this is where things usually break first)..."
     sudo apt-get update
     sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y curl git unzip zip software-properties-common lsb-release ca-certificates apt-transport-https gnupg
+    # libatomic1 is required by recent Node binaries and missing on minimal Ubuntu images
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y curl git unzip zip software-properties-common lsb-release ca-certificates apt-transport-https gnupg libatomic1
     echo "🎉 Package updates completed without any dependency hell!"
 }
 STEP "system_update" step_system_update
